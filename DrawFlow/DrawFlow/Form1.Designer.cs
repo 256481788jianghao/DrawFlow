@@ -28,19 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.panel_menuleft = new System.Windows.Forms.Panel();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel_menuleft = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel_down = new System.Windows.Forms.Panel();
+            this.Buttom_Tip = new System.Windows.Forms.TextBox();
             this.panel_top = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_Context = new System.Windows.Forms.TabControl();
-            this.Buttom_Tip = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.panel_down.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -67,6 +68,25 @@
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.文件ToolStripMenuItem.Text = "文件";
             // 
+            // 新建ToolStripMenuItem
+            // 
+            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.新建ToolStripMenuItem.Text = "新建";
+            this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
+            // 
+            // 打开ToolStripMenuItem
+            // 
+            this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
+            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.打开ToolStripMenuItem.Text = "打开";
+            // 
+            // 保存ToolStripMenuItem
+            // 
+            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(100, 22);
+            this.保存ToolStripMenuItem.Text = "保存";
+            // 
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
@@ -90,25 +110,6 @@
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
-            // 新建ToolStripMenuItem
-            // 
-            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
-            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.新建ToolStripMenuItem.Text = "新建";
-            this.新建ToolStripMenuItem.Click += new System.EventHandler(this.新建ToolStripMenuItem_Click);
-            // 
-            // 打开ToolStripMenuItem
-            // 
-            this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
-            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.打开ToolStripMenuItem.Text = "打开";
-            // 
-            // 保存ToolStripMenuItem
-            // 
-            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
-            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.保存ToolStripMenuItem.Text = "保存";
-            // 
             // panel_down
             // 
             this.panel_down.BackColor = System.Drawing.SystemColors.ActiveCaption;
@@ -118,6 +119,16 @@
             this.panel_down.Name = "panel_down";
             this.panel_down.Size = new System.Drawing.Size(965, 27);
             this.panel_down.TabIndex = 4;
+            // 
+            // Buttom_Tip
+            // 
+            this.Buttom_Tip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Buttom_Tip.Enabled = false;
+            this.Buttom_Tip.Location = new System.Drawing.Point(0, 0);
+            this.Buttom_Tip.Multiline = true;
+            this.Buttom_Tip.Name = "Buttom_Tip";
+            this.Buttom_Tip.Size = new System.Drawing.Size(965, 27);
+            this.Buttom_Tip.TabIndex = 0;
             // 
             // panel_top
             // 
@@ -146,15 +157,6 @@
             this.tabControl_Context.Size = new System.Drawing.Size(965, 505);
             this.tabControl_Context.TabIndex = 0;
             // 
-            // Buttom_Tip
-            // 
-            this.Buttom_Tip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Buttom_Tip.Location = new System.Drawing.Point(0, 0);
-            this.Buttom_Tip.Multiline = true;
-            this.Buttom_Tip.Name = "Buttom_Tip";
-            this.Buttom_Tip.Size = new System.Drawing.Size(965, 27);
-            this.Buttom_Tip.TabIndex = 0;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -166,6 +168,7 @@
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel_menuleft);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "DrawFlow";
