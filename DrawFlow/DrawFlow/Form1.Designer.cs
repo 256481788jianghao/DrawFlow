@@ -33,13 +33,15 @@
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_menuleft = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
-            this.panel_context = new System.Windows.Forms.Panel();
             this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.panel_down = new System.Windows.Forms.Panel();
+            this.panel_top = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_Context = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
-            this.panel_context.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -71,28 +73,20 @@
             // 
             // panel_menuleft
             // 
+            this.panel_menuleft.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.panel_menuleft.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel_menuleft.Location = new System.Drawing.Point(0, 25);
             this.panel_menuleft.Name = "panel_menuleft";
-            this.panel_menuleft.Size = new System.Drawing.Size(103, 425);
+            this.panel_menuleft.Size = new System.Drawing.Size(42, 425);
             this.panel_menuleft.TabIndex = 1;
             // 
             // splitter1
             // 
-            this.splitter1.Location = new System.Drawing.Point(103, 25);
+            this.splitter1.Location = new System.Drawing.Point(42, 25);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(3, 425);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
-            // 
-            // panel_context
-            // 
-            this.panel_context.Controls.Add(this.tabControl_Context);
-            this.panel_context.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_context.Location = new System.Drawing.Point(106, 25);
-            this.panel_context.Name = "panel_context";
-            this.panel_context.Size = new System.Drawing.Size(694, 425);
-            this.panel_context.TabIndex = 3;
             // 
             // 新建ToolStripMenuItem
             // 
@@ -113,13 +107,40 @@
             this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.保存ToolStripMenuItem.Text = "保存";
             // 
+            // panel_down
+            // 
+            this.panel_down.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel_down.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel_down.Location = new System.Drawing.Point(45, 423);
+            this.panel_down.Name = "panel_down";
+            this.panel_down.Size = new System.Drawing.Size(755, 27);
+            this.panel_down.TabIndex = 4;
+            // 
+            // panel_top
+            // 
+            this.panel_top.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.panel_top.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel_top.Location = new System.Drawing.Point(45, 25);
+            this.panel_top.Name = "panel_top";
+            this.panel_top.Size = new System.Drawing.Size(755, 25);
+            this.panel_top.TabIndex = 5;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.tabControl_Context);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(45, 50);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(755, 373);
+            this.panel1.TabIndex = 6;
+            // 
             // tabControl_Context
             // 
             this.tabControl_Context.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl_Context.Location = new System.Drawing.Point(0, 0);
             this.tabControl_Context.Name = "tabControl_Context";
             this.tabControl_Context.SelectedIndex = 0;
-            this.tabControl_Context.Size = new System.Drawing.Size(694, 425);
+            this.tabControl_Context.Size = new System.Drawing.Size(755, 373);
             this.tabControl_Context.TabIndex = 0;
             // 
             // Form1
@@ -127,7 +148,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel_context);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel_top);
+            this.Controls.Add(this.panel_down);
             this.Controls.Add(this.splitter1);
             this.Controls.Add(this.panel_menuleft);
             this.Controls.Add(this.menuStrip1);
@@ -137,7 +160,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.panel_context.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -150,10 +173,12 @@
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.Panel panel_menuleft;
         private System.Windows.Forms.Splitter splitter1;
-        private System.Windows.Forms.Panel panel_context;
         private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 打开ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 保存ToolStripMenuItem;
+        private System.Windows.Forms.Panel panel_down;
+        private System.Windows.Forms.Panel panel_top;
+        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TabControl tabControl_Context;
     }
 }
