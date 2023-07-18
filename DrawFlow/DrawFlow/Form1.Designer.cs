@@ -34,7 +34,12 @@
             this.panel_menuleft = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel_context = new System.Windows.Forms.Panel();
+            this.新建ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.打开ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabControl_Context = new System.Windows.Forms.TabControl();
             this.menuStrip1.SuspendLayout();
+            this.panel_context.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -50,6 +55,10 @@
             // 
             // 文件ToolStripMenuItem
             // 
+            this.文件ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.新建ToolStripMenuItem,
+            this.打开ToolStripMenuItem,
+            this.保存ToolStripMenuItem});
             this.文件ToolStripMenuItem.Name = "文件ToolStripMenuItem";
             this.文件ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.文件ToolStripMenuItem.Text = "文件";
@@ -78,11 +87,39 @@
             // 
             // panel_context
             // 
+            this.panel_context.Controls.Add(this.tabControl_Context);
             this.panel_context.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel_context.Location = new System.Drawing.Point(106, 25);
             this.panel_context.Name = "panel_context";
             this.panel_context.Size = new System.Drawing.Size(694, 425);
             this.panel_context.TabIndex = 3;
+            // 
+            // 新建ToolStripMenuItem
+            // 
+            this.新建ToolStripMenuItem.Name = "新建ToolStripMenuItem";
+            this.新建ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.新建ToolStripMenuItem.Text = "新建";
+            // 
+            // 打开ToolStripMenuItem
+            // 
+            this.打开ToolStripMenuItem.Name = "打开ToolStripMenuItem";
+            this.打开ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.打开ToolStripMenuItem.Text = "打开";
+            // 
+            // 保存ToolStripMenuItem
+            // 
+            this.保存ToolStripMenuItem.Name = "保存ToolStripMenuItem";
+            this.保存ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.保存ToolStripMenuItem.Text = "保存";
+            // 
+            // tabControl_Context
+            // 
+            this.tabControl_Context.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl_Context.Location = new System.Drawing.Point(0, 0);
+            this.tabControl_Context.Name = "tabControl_Context";
+            this.tabControl_Context.SelectedIndex = 0;
+            this.tabControl_Context.Size = new System.Drawing.Size(694, 425);
+            this.tabControl_Context.TabIndex = 0;
             // 
             // Form1
             // 
@@ -99,6 +136,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel_context.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,6 +150,10 @@
         private System.Windows.Forms.Panel panel_menuleft;
         private System.Windows.Forms.Splitter splitter1;
         private System.Windows.Forms.Panel panel_context;
+        private System.Windows.Forms.ToolStripMenuItem 新建ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 打开ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem 保存ToolStripMenuItem;
+        private System.Windows.Forms.TabControl tabControl_Context;
     }
 }
 
