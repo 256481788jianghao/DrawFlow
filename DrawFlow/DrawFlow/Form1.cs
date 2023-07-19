@@ -35,15 +35,34 @@ namespace DrawFlow
                 file.RelativePage = new TabPage(file.Name);
                 file.RelativePage.BackColor = Color.White;
                 file.RelativePage.Paint += new PaintEventHandler(PaintEventCallBack_Test);
+                file.RelativePage.MouseMove += new MouseEventHandler(MouseMoveEventCallBack_Test);
                 tabControl_Context.TabPages.Add(file.RelativePage);
                 GVL.df_file_list.Add(file);
+                InitTreeViewLeftMenu();
             }
+        }
+
+        void InitTreeViewLeftMenu()
+        {
+            TreeNode root = new TreeNode("基本图形");
+            root.Nodes.Add(new TreeNode("开始/结束"));
+            root.Nodes.Add(new TreeNode("基本处理"));
+            root.Nodes.Add(new TreeNode("条件判断"));
+            root.Nodes.Add(new TreeNode("连线"));
+            treeView_leftmenu.Nodes.Add(root);
+        }
+
+        private void MouseMoveEventCallBack_Test(object obj, MouseEventArgs pe)
+        {
+            TabPage page = (TabPage)obj;
+            page.Invalidate();
         }
 
         private void PaintEventCallBack_Test(object obj,PaintEventArgs pe)
         {
             Pen p = new Pen(Color.Red, 2);
             pe.Graphics.DrawEllipse(p, new RectangleF(0, 0, 100, 100));
+            Buttom_Tip.Text = "Paint:" + DateTime.Now.ToString();
         }
     }
 }
