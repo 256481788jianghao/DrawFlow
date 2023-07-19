@@ -49,6 +49,7 @@ namespace DrawFlow
             root.Nodes.Add(new TreeNode("基本处理"));
             root.Nodes.Add(new TreeNode("条件判断"));
             root.Nodes.Add(new TreeNode("连线"));
+            root.Nodes.Add(new TreeNode("跳转到"));
             treeView_leftmenu.Nodes.Add(root);
         }
 
