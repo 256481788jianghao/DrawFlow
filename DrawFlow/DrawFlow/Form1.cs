@@ -21,11 +21,15 @@ namespace DrawFlow
 
         private void 新建ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FileTypeForm ftypeForm = new FileTypeForm();
+            ftypeForm.ShowDialog();
+
             SaveFileDialog dlg = new SaveFileDialog();
             dlg.Filter = "DFFILE|*.dff";
             if(dlg.ShowDialog() == DialogResult.OK)
             {
                 DF_File file = new DF_File();
+                file.fType = ftypeForm.ftype;
                 file.FilePath = dlg.FileName;
                 file.Name = Path.GetFileNameWithoutExtension(dlg.FileName);
                 file.RelativePage = new TabPage(file.Name);

@@ -50,6 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\DF_File.cs" />
+    <Compile Include="FileTypeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FileTypeForm.Designer.cs">
+      <DependentUpon>FileTypeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -59,6 +65,9 @@
     <Compile Include="GVL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FileTypeForm.resx">
+      <DependentUpon>FileTypeForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
