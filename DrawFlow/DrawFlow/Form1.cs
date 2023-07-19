@@ -29,9 +29,17 @@ namespace DrawFlow
                 file.FilePath = dlg.FileName;
                 file.Name = Path.GetFileNameWithoutExtension(dlg.FileName);
                 file.RelativePage = new TabPage(file.Name);
+                file.RelativePage.BackColor = Color.White;
+                file.RelativePage.Paint += new PaintEventHandler(PaintEventCallBack_Test);
                 tabControl_Context.TabPages.Add(file.RelativePage);
                 GVL.df_file_list.Add(file);
             }
+        }
+
+        private void PaintEventCallBack_Test(object obj,PaintEventArgs pe)
+        {
+            Pen p = new Pen(Color.Red, 2);
+            pe.Graphics.DrawEllipse(p, new RectangleF(0, 0, 100, 100));
         }
     }
 }
