@@ -36,13 +36,13 @@
             this.保存ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel_menuleft = new System.Windows.Forms.Panel();
+            this.treeView_leftmenu = new System.Windows.Forms.TreeView();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel_down = new System.Windows.Forms.Panel();
             this.Buttom_Tip = new System.Windows.Forms.TextBox();
             this.panel_top = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl_Context = new System.Windows.Forms.TabControl();
-            this.treeView_leftmenu = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
             this.panel_menuleft.SuspendLayout();
             this.panel_down.SuspendLayout();
@@ -105,6 +105,15 @@
             this.panel_menuleft.Size = new System.Drawing.Size(128, 557);
             this.panel_menuleft.TabIndex = 1;
             // 
+            // treeView_leftmenu
+            // 
+            this.treeView_leftmenu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeView_leftmenu.Location = new System.Drawing.Point(0, 0);
+            this.treeView_leftmenu.Name = "treeView_leftmenu";
+            this.treeView_leftmenu.Size = new System.Drawing.Size(128, 557);
+            this.treeView_leftmenu.TabIndex = 0;
+            this.treeView_leftmenu.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView_leftmenu_NodeMouseDoubleClick);
+            // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(128, 25);
@@ -159,14 +168,7 @@
             this.tabControl_Context.SelectedIndex = 0;
             this.tabControl_Context.Size = new System.Drawing.Size(879, 505);
             this.tabControl_Context.TabIndex = 0;
-            // 
-            // treeView_leftmenu
-            // 
-            this.treeView_leftmenu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeView_leftmenu.Location = new System.Drawing.Point(0, 0);
-            this.treeView_leftmenu.Name = "treeView_leftmenu";
-            this.treeView_leftmenu.Size = new System.Drawing.Size(128, 557);
-            this.treeView_leftmenu.TabIndex = 0;
+            this.tabControl_Context.Selected += new System.Windows.Forms.TabControlEventHandler(this.tabControl_Context_Selected);
             // 
             // Form1
             // 

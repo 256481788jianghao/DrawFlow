@@ -38,12 +38,19 @@ namespace DrawFlow
                 file.RelativePage.MouseMove += new MouseEventHandler(MouseMoveEventCallBack_Test);
                 tabControl_Context.TabPages.Add(file.RelativePage);
                 GVL.df_file_list.Add(file);
+
+                if(tabControl_Context.TabPages.Count == 1)
+                {
+                    GVL.CurPage = file.RelativePage;
+                }
+
                 InitTreeViewLeftMenu();
             }
         }
 
         void InitTreeViewLeftMenu()
         {
+            //treeView_leftmenu.Nodes.Clear();
             TreeNode root = new TreeNode("基本图形");
             root.Nodes.Add(new TreeNode("开始/结束"));
             root.Nodes.Add(new TreeNode("基本处理"));
@@ -64,6 +71,30 @@ namespace DrawFlow
             Pen p = new Pen(Color.Red, 2);
             pe.Graphics.DrawEllipse(p, new RectangleF(0, 0, 100, 100));
             Buttom_Tip.Text = "Paint:" + DateTime.Now.ToString();
+        }
+
+        private void treeView_leftmenu_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            switch (e.Node.Text) 
+            {
+                case "基本处理":
+                    {
+                        Panel p1 = new Panel();
+                        p1.BackColor = Color.Red;
+                        p1.Width = 100;
+                        p1.Height = 100;
+                        GVL.CurPage?.Controls.Add(p1);
+                        break;
+                    }
+                default:
+                    return;
+            }
+
+        }
+
+        private void tabControl_Context_Selected(object sender, TabControlEventArgs e)
+        {
+            GVL.CurPage = e.TabPage;
         }
     }
 }
