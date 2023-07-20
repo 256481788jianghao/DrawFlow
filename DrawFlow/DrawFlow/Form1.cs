@@ -34,8 +34,8 @@ namespace DrawFlow
                 file.Name = Path.GetFileNameWithoutExtension(dlg.FileName);
                 file.RelativePage = new TabPage(file.Name);
                 file.RelativePage.BackColor = Color.White;
-                file.RelativePage.Paint += new PaintEventHandler(PaintEventCallBack_Test);
-                file.RelativePage.MouseMove += new MouseEventHandler(MouseMoveEventCallBack_Test);
+                //file.RelativePage.Paint += new PaintEventHandler(PaintEventCallBack_Test);
+                //file.RelativePage.MouseMove += new MouseEventHandler(MouseMoveEventCallBack_Test);
                 tabControl_Context.TabPages.Add(file.RelativePage);
                 GVL.df_file_list.Add(file);
 
@@ -82,7 +82,12 @@ namespace DrawFlow
             {
                 case "基本处理":
                     {
-                        
+                        GVL.CurFile.AddRect();
+                        break;
+                    }
+                case "跳转到":
+                    {
+                        GVL.CurFile.AddCircle();
                         break;
                     }
                 default:
