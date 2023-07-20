@@ -11,6 +11,6 @@ namespace DrawFlow
     public class GVL
     {
         public static List<DF_File> df_file_list = new List<DF_File>();
-        public static TabPage CurPage { get; set; } = null;
+        public static DF_File CurFile { get; set; } = null;
     }
 }

@@ -41,7 +41,7 @@ namespace DrawFlow
 
                 if(tabControl_Context.TabPages.Count == 1)
                 {
-                    GVL.CurPage = file.RelativePage;
+                    GVL.CurFile = file;
                 }
 
                 InitTreeViewLeftMenu();
@@ -50,7 +50,10 @@ namespace DrawFlow
 
         void InitTreeViewLeftMenu()
         {
-            //treeView_leftmenu.Nodes.Clear();
+            if(treeView_leftmenu.Nodes.Count != 0)
+            {
+                treeView_leftmenu.Nodes.Clear();
+            }
             TreeNode root = new TreeNode("基本图形");
             root.Nodes.Add(new TreeNode("开始/结束"));
             root.Nodes.Add(new TreeNode("基本处理"));
@@ -79,11 +82,7 @@ namespace DrawFlow
             {
                 case "基本处理":
                     {
-                        Panel p1 = new Panel();
-                        p1.BackColor = Color.Red;
-                        p1.Width = 100;
-                        p1.Height = 100;
-                        GVL.CurPage?.Controls.Add(p1);
+                        
                         break;
                     }
                 default:
@@ -94,7 +93,7 @@ namespace DrawFlow
 
         private void tabControl_Context_Selected(object sender, TabControlEventArgs e)
         {
-            GVL.CurPage = e.TabPage;
+            GVL.CurFile = GVL.df_file_list.Find((x) => x.RelativePage == e.TabPage);
         }
     }
 }
