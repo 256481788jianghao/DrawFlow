@@ -36,6 +36,7 @@ namespace DrawFlow
                 file.RelativePage.BackColor = Color.White;
                 //file.RelativePage.Paint += new PaintEventHandler(PaintEventCallBack_Test);
                 //file.RelativePage.MouseMove += new MouseEventHandler(MouseMoveEventCallBack_Test);
+                file.RelativePage.MouseClick += new MouseEventHandler(MouseClickEventCallBack_Test);
                 tabControl_Context.TabPages.Add(file.RelativePage);
                 GVL.df_file_list.Add(file);
 
@@ -61,6 +62,12 @@ namespace DrawFlow
             root.Nodes.Add(new TreeNode("连线"));
             root.Nodes.Add(new TreeNode("跳转到"));
             treeView_leftmenu.Nodes.Add(root);
+            treeView_leftmenu.ExpandAll();
+        }
+
+        private void MouseClickEventCallBack_Test(object obj, MouseEventArgs pe)
+        {
+            Console.WriteLine("page click....");
         }
 
         private void MouseMoveEventCallBack_Test(object obj, MouseEventArgs pe)

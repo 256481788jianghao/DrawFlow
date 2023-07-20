@@ -32,8 +32,14 @@ namespace DrawFlow.DataTypes
             PanelObj.BackColor = Color.Transparent;
             PanelObj.Width = PanelObj.Height = 100;
             PanelObj.Paint += new PaintEventHandler(PaintCallBack);
+            PanelObj.MouseClick += new MouseEventHandler(MouseClickCallBack);
         }
 
         public virtual void PaintCallBack(Object obj, PaintEventArgs pe) { }
+        public virtual void MouseClickCallBack(Object obj, MouseEventArgs pe) 
+        {
+            Console.WriteLine("shape click...");
+            
+        }
     }
 }
