@@ -12,5 +12,8 @@ namespace DrawFlow
     {
         public static List<DF_File> df_file_list = new List<DF_File>();
         public static DF_File CurFile { get; set; } = null;
+
+
+        public static int shape_pad = 8;
     }
 }

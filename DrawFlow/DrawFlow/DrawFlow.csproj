@@ -52,6 +52,7 @@
     <Compile Include="DataTypes\DF_Circle.cs" />
     <Compile Include="DataTypes\DF_File.cs" />
     <Compile Include="DataTypes\DF_Rect.cs" />
+    <Compile Include="DataTypes\DF_ResizeShape.cs" />
     <Compile Include="DataTypes\DF_Shape.cs" />
     <Compile Include="FileTypeForm.cs">
       <SubType>Form</SubType>

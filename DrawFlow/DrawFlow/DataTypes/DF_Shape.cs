@@ -21,7 +21,16 @@ namespace DrawFlow.DataTypes
     {
         Stop = 0,
         Moving = 1,
-        EnterResizeArea = 2
+        EnterResizeArea = 2,
+        ResizeUp,
+        ResizeDown,
+        ResizeLeft,
+        ResizeRight,
+        ResizeUpLeft,
+        ResizeUpRight,
+        ResizeDownLeft,
+        ResizeDownRight
+
     }
 
     public enum DF_ResizeDir
@@ -43,6 +52,7 @@ namespace DrawFlow.DataTypes
 
         public DF_ShapeType ShapeTpye { get; set; } = DF_ShapeType.None;
         public DF_ShapeState ShapeState { get; set;} = DF_ShapeState.Stop;
+        public DF_ShapeState LastShapeState { get; set; } = DF_ShapeState.Stop;
 
         public Panel PanelObj { get; set; }
 
@@ -59,6 +69,7 @@ namespace DrawFlow.DataTypes
             PanelObj.MouseMove += new MouseEventHandler(MouseMoveCallBack);
             PanelObj.MouseUp += new MouseEventHandler(MouseUpCallBack);
             PanelObj.MouseEnter += new EventHandler(MouseEnterCallBack);
+            PanelObj.MouseLeave += new EventHandler(MouseLeaveCallBack);
         }
 
         public virtual void PaintCallBack(Object obj, PaintEventArgs pe) 
@@ -66,12 +77,6 @@ namespace DrawFlow.DataTypes
             Panel p = (Panel)obj;
             Brush br = new SolidBrush(Color.Transparent);
             pe.Graphics.FillRectangle(br, new Rectangle(0, 0, p.Width, p.Height));
-
-            Brush resizeBr = new SolidBrush(Color.Red);
-            if(ShapeState == DF_ShapeState.EnterResizeArea)
-            {
-                DrawResizePoints(resizeBr, pe.Graphics);
-            }
         }
         public virtual void MouseClickCallBack(Object obj, MouseEventArgs pe) 
         {
@@ -84,10 +89,15 @@ namespace DrawFlow.DataTypes
             Panel p = (Panel)obj;
             if (pe.Button == MouseButtons.Left)
             {
-                if (IsMouseInMoveTrigRect(pe.Location))
+                //状态机
+                if(ShapeState == DF_ShapeState.Stop)
                 {
-                    ShapeState = DF_ShapeState.Moving;
+                    if (IsMouseInMoveTrigRect(pe.Location))
+                    {
+                        SetShapeState(DF_ShapeState.Moving);
+                    }
                 }
+                
             }
 
         }
@@ -97,7 +107,12 @@ namespace DrawFlow.DataTypes
             Console.WriteLine("shape Up... " + (pe.Button == MouseButtons.Left));
             if (pe.Button == MouseButtons.Left)
             {
-                ShapeState = DF_ShapeState.Stop;
+                //状态机
+                if(ShapeState == DF_ShapeState.Moving)
+                {
+                    SetShapeState(DF_ShapeState.Stop);
+                }
+                
             }
 
         }
@@ -105,47 +120,10 @@ namespace DrawFlow.DataTypes
 
         public virtual void MouseMoveCallBack(Object obj, MouseEventArgs pe)
         {
-            Console.WriteLine("shape Move... " + pe.X+" "+pe.Y+" "+pe.Button);
+            Console.WriteLine("shape Move... " + pe.X+" "+pe.Y+" "+pe.Button+" "+ShapeState);
             Panel p = (Panel)obj;
-            if (IsMouseInMoveTrigRect(pe.Location))
-            {
-                p.Cursor = Cursors.SizeAll;
-            }
-            else if (IsInResizeArea(p, pe.Location))
-            {
-                ShapeState = DF_ShapeState.EnterResizeArea;
-                InitResizeRects(p);
-
-                p.Invalidate();
-
-                switch (GetResizeDirection(pe.Location))
-                {
-                    case DF_ResizeDir.UpLeft:
-                    case DF_ResizeDir.DownRight:
-                        p.Cursor = Cursors.SizeNWSE; break;
-                    case DF_ResizeDir.UpRight:
-                    case DF_ResizeDir.DownLeft:
-                        p.Cursor = Cursors.SizeNESW; break;
-                    case DF_ResizeDir.Up:
-                    case DF_ResizeDir.Down:
-                        p.Cursor = Cursors.SizeNS; break;
-                    case DF_ResizeDir.Left:
-                    case DF_ResizeDir.Right:
-                        p.Cursor = Cursors.SizeWE; break;
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                if(ShapeState == DF_ShapeState.EnterResizeArea)
-                {
-                    p.Invalidate(true);
-                }
-                ShapeState = DF_ShapeState.Stop;
-                p.Cursor = Cursors.Default;
-            }
-
+            
+            //状态变换
             if(ShapeState == DF_ShapeState.Moving)
             {
                 p.Top += (pe.Y - (moveTrigRect.Y + moveTrigRect.Height / 2));
@@ -160,6 +138,18 @@ namespace DrawFlow.DataTypes
                     p.Left = 0;
                 }
             }
+            else if(ShapeState == DF_ShapeState.Stop)
+            {
+                if (IsMouseInMoveTrigRect(pe.Location))
+                {
+                    p.Cursor = Cursors.SizeAll;
+                }
+                else
+                {
+                    p.Cursor = Cursors.Default;
+                }
+            }
+            
 
         }
 
@@ -169,56 +159,24 @@ namespace DrawFlow.DataTypes
             //p.Cursor = Cursors.SizeAll;
         }
 
+        public virtual void MouseLeaveCallBack(Object obj, EventArgs pe)
+        {
+            Panel p = (Panel)obj;
+            SetShapeState(DF_ShapeState.Stop);
+            p.Invalidate(true);
+        }
 
-        Rectangle moveTrigRect = new Rectangle(10, 0, 10, 10);
-        private bool IsMouseInMoveTrigRect(Point location)
+
+        Rectangle moveTrigRect = new Rectangle(10, 0, 20, 20);
+        public bool IsMouseInMoveTrigRect(Point location)
         {
             return moveTrigRect.Contains(location);
         }
 
-        List<Rectangle> resizeTrigRects = new List<Rectangle>();
-        private bool IsInResizeArea(Panel p, Point Location)
+        public void SetShapeState(DF_ShapeState state)
         {
-            Rectangle r1 = new Rectangle(0, 0, p.Width, p.Height);
-            Rectangle r2 = new Rectangle(5, 5, p.Width - 5, p.Height - 5);
-            return r1.Contains(Location) && !r2.Contains(Location) && !moveTrigRect.Contains(Location);
-        }
-
-
-        private void InitResizeRects(Panel p)
-        {
-            resizeTrigRects.Clear();
-            int w0 = p.Width;
-            int h0 = p.Height;
-
-            resizeTrigRects.Add(new Rectangle(0, 0, 5, 5));
-            resizeTrigRects.Add(new Rectangle(w0 / 2, 0, 5, 5));
-            resizeTrigRects.Add(new Rectangle(w0 - 5, 0, 5, 5));
-            resizeTrigRects.Add(new Rectangle(0, h0 / 2, 5, 5));
-            resizeTrigRects.Add(new Rectangle(w0 - 5, h0 / 2, 5, 5));
-            resizeTrigRects.Add(new Rectangle(0, h0 - 5, 5, 5));
-            resizeTrigRects.Add(new Rectangle(w0 / 2, h0 - 5, 5, 5));
-            resizeTrigRects.Add(new Rectangle(w0 - 5, h0 - 5, 5, 5));
-        }
-
-        private DF_ResizeDir GetResizeDirection(Point Location)
-        {
-            for(int i = 0;i<resizeTrigRects.Count;i++)
-            {
-                if (resizeTrigRects[i].Contains(Location))
-                {
-                    return (DF_ResizeDir)i;
-                }
-            }
-            return DF_ResizeDir.None;
-        }
-
-        private void DrawResizePoints(Brush br, Graphics g)
-        {
-            if(resizeTrigRects.Count > 0)
-            {
-                g.FillRectangles(br, resizeTrigRects.ToArray());
-            }
+            LastShapeState = ShapeState;
+            ShapeState = state;
         }
     }
 }
