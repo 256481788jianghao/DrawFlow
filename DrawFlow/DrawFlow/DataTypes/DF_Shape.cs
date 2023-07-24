@@ -14,7 +14,8 @@ namespace DrawFlow.DataTypes
         Rect,
         Circle,
         Start_End,
-        Line
+        Line,
+        Text
     }
 
     public enum DF_ShapeState
@@ -29,7 +30,8 @@ namespace DrawFlow.DataTypes
         ResizeUpLeft,
         ResizeUpRight,
         ResizeDownLeft,
-        ResizeDownRight
+        ResizeDownRight,
+        InputText
 
     }
 

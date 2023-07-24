@@ -33,5 +33,12 @@ namespace DrawFlow.DataTypes
             Shapes.Add(circle);
             RelativePage.Controls.Add(circle.PanelObj);
         }
+
+        public void AddText()
+        {
+            DF_Text text = new DF_Text();
+            Shapes.Add(text);
+            RelativePage.Controls.Add(text.PanelObj);
+        }
     }
 }

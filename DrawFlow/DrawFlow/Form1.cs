@@ -61,6 +61,7 @@ namespace DrawFlow
             root.Nodes.Add(new TreeNode("条件判断"));
             root.Nodes.Add(new TreeNode("连线"));
             root.Nodes.Add(new TreeNode("跳转到"));
+            root.Nodes.Add(new TreeNode("文字"));
             treeView_leftmenu.Nodes.Add(root);
             treeView_leftmenu.ExpandAll();
         }
@@ -97,6 +98,11 @@ namespace DrawFlow
                         GVL.CurFile.AddCircle();
                         break;
                     }
+                case "文字":
+                    {
+                        GVL.CurFile.AddText();
+                        break;
+                     }
                 default:
                     return;
             }

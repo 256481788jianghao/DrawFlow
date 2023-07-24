@@ -28,6 +28,9 @@ namespace DrawFlow.DataTypes
             //    Pen tp = new Pen(Color.Red);
             //    pe.Graphics.DrawRectangle(tp, new Rectangle(0, 0, p.Width, p.Height));
             //}
+
+            //文字要放在最后
+            DrawText(obj, pe);
         }
     }
 }

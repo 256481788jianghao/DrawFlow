@@ -15,5 +15,6 @@ namespace DrawFlow
 
 
         public static int shape_pad = 8;
+        public static int text_pad = shape_pad + 2;
     }
 }

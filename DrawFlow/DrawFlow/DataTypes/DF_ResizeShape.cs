@@ -8,9 +8,12 @@ using System.Windows.Forms;
 
 namespace DrawFlow.DataTypes
 {
-     public  class DF_ResizeShape:DF_Shape
+     public  class DF_ResizeShape:DF_Text
     {
-        public DF_ResizeShape() { }
+        public DF_ResizeShape() 
+        {
+            brush = new SolidBrush(Color.White);
+        }
 
         public override void PaintCallBack(Object obj, PaintEventArgs pe)
         {
