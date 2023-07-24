@@ -107,59 +107,204 @@ namespace DrawFlow.DataTypes
             }
             else if(ShapeState == DF_ShapeState.ResizeUp)
             {
-                int Delta = pe.Y - GVL.shape_pad;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                int Delta = 0;
+                if (w_dis[0] < 0)
+                {
+                    Delta = w_dis[0];
+                }
+                else if (n_dis[0] > 0)
+                {
+                    Delta = n_dis[0];
+                }
+
                 p.Top += Delta;
-                p.Height += Math.Abs(Delta);
+                p.Height += -Delta;
             }
             else if (ShapeState == DF_ShapeState.ResizeDown)
             {
-                int Delta = pe.Y - (p.Height - GVL.shape_pad);
-                p.Height += Math.Abs(Delta);
+                int Delta = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[1] > 0)
+                {
+                    Delta = w_dis[1];
+                }
+                else if (n_dis[1] < 0)
+                {
+                    Delta = n_dis[1];
+                }
+
+                p.Height += Delta;
                 p.Invalidate();
             }
             else if (ShapeState == DF_ShapeState.ResizeLeft)
             {
-                int Delta = pe.X - GVL.shape_pad;
+                int Delta = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[2] < 0)
+                {
+                    Delta = w_dis[2];
+                }
+                else if (n_dis[2] > 0)
+                {
+                    Delta = n_dis[2];
+                }
+
                 p.Left += Delta;
-                p.Width += Math.Abs(Delta);
+                p.Width += -Delta;
             }
             else if (ShapeState == DF_ShapeState.ResizeRight)
             {
-                int Delta = pe.X - (p.Width - GVL.shape_pad);
-                p.Width += Math.Abs(Delta);
+                int Delta = 0;
+
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[3] > 0)
+                {
+                    Delta = w_dis[3];
+                }
+                else if (n_dis[3] < 0)
+                {
+                    Delta = n_dis[3];
+                }
+
+
+                p.Width += Delta;
                 p.Invalidate();
             }
             else if (ShapeState == DF_ShapeState.ResizeUpLeft)
             {
-                int DeltaY = pe.Y - GVL.shape_pad;
-                int DeltaX = pe.X - GVL.shape_pad;
+                int DeltaY = 0;
+                int DeltaX = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[0] < 0)
+                {
+                    DeltaY = w_dis[0];
+                }
+                else if (n_dis[0] > 0)
+                {
+                    DeltaY = n_dis[0];
+                }
+
+                if (w_dis[2] < 0)
+                {
+                    DeltaX = w_dis[2];
+                }
+                else if (n_dis[2] > 0)
+                {
+                    DeltaX = n_dis[2];
+                }
+
+
                 p.Top += DeltaY;
                 p.Left += DeltaX;
-                p.Height += Math.Abs(DeltaY);
-                p.Width += Math.Abs(DeltaX);
+                p.Height += -DeltaY;
+                p.Width += -DeltaX;
             }
             else if (ShapeState == DF_ShapeState.ResizeUpRight)
             {
-                int DeltaY = pe.Y - GVL.shape_pad;
-                int DeltaX = pe.X - (p.Width - GVL.shape_pad);
+                int DeltaY = 0;
+                int DeltaX = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[0] < 0)
+                {
+                    DeltaY = w_dis[0];
+                }
+                else if (n_dis[0] > 0)
+                {
+                    DeltaY = n_dis[0];
+                }
+
+                if (w_dis[3] > 0)
+                {
+                    DeltaX = w_dis[3];
+                }
+                else if (n_dis[3] < 0)
+                {
+                    DeltaX = n_dis[3];
+                }
+
+
                 p.Top += DeltaY;
-                p.Height += Math.Abs(DeltaY);
-                p.Width += Math.Abs(DeltaX);
+                p.Height += -DeltaY;
+                p.Width += DeltaX;
             }
             else if (ShapeState == DF_ShapeState.ResizeDownLeft)
             {
-                int DeltaY = pe.Y - (p.Height - GVL.shape_pad);
-                int DeltaX = pe.X - GVL.shape_pad;
+                int DeltaY = 0;
+                int DeltaX = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[1] > 0)
+                {
+                    DeltaY = w_dis[1];
+                }
+                else if (n_dis[1] < 0)
+                {
+                    DeltaY = n_dis[1];
+                }
+
+
+                if (w_dis[2] < 0)
+                {
+                    DeltaX = w_dis[2];
+                }
+                else if (n_dis[2] > 0)
+                {
+                    DeltaX = n_dis[2];
+                }
+
                 p.Left += DeltaX;
-                p.Height += Math.Abs(DeltaY);
-                p.Width += Math.Abs(DeltaX);
+                p.Height += DeltaY;
+                p.Width += -DeltaX;
             }
             else if (ShapeState == DF_ShapeState.ResizeDownRight)
             {
-                int DeltaY = pe.Y - (p.Height - GVL.shape_pad);
-                int DeltaX = pe.X - (p.Width - GVL.shape_pad) ;
-                p.Height += Math.Abs(DeltaY);
-                p.Width += Math.Abs(DeltaX);
+                int DeltaY = 0;
+                int DeltaX = 0;
+                int[][] dis = DistanceToRect(p, pe.Location);
+                int[] w_dis = dis[0];
+                int[] n_dis = dis[1];
+
+                if (w_dis[1] > 0)
+                {
+                    DeltaY = w_dis[1];
+                }
+                else if (n_dis[1] < 0)
+                {
+                    DeltaY = n_dis[1];
+                }
+
+                if (w_dis[3] > 0)
+                {
+                    DeltaX = w_dis[3];
+                }
+                else if (n_dis[3] < 0)
+                {
+                    DeltaX = n_dis[3];
+                }
+
+                p.Height += DeltaY;
+                p.Width += DeltaX;
                 p.Invalidate();
             }
         }
@@ -208,6 +353,27 @@ namespace DrawFlow.DataTypes
             {
                 g.FillRectangles(br, resizeTrigRects.ToArray());
             }
+        }
+
+        //计算某个点距离内矩形和外矩形四边的距离，顺序是上下左右
+        private int[][] DistanceToRect(Panel p,Point location)
+        {
+            int[] w_dis = new int[4];
+            int[] n_dis = new int[4];
+
+            Rectangle r = new Rectangle(GVL.shape_pad, GVL.shape_pad, p.Width - 2 * GVL.shape_pad, p.Height - 2 * GVL.shape_pad);
+
+            w_dis[0] = location.Y;
+            w_dis[1] = location.Y - p.Height;
+            w_dis[2] = location.X;
+            w_dis[3] = location.X - p.Width;
+
+            n_dis[0] = location.Y - r.Top;
+            n_dis[1] = location.Y - r.Bottom;
+            n_dis[2] = location.X - r.Left;
+            n_dis[3] = location.X - r.Right;
+
+            return new int[2][] { w_dis, n_dis };
         }
     }
 }
